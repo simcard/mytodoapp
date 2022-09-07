@@ -53,7 +53,6 @@ export default {
                     location: this.location
                 }
                 this.addTodo(payload);
-                console.log(this.todos);
             }
         },
         archiveItem(item) {
