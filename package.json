@@ -6,9 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "datahub": "datahub server -c macaca-datahub.config.js --verbose"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "path": "^0.12.7",
     "pinia": "^2.0.21",
     "uuid": "^8.3.2",
     "vue": "^3.2.37",
@@ -17,6 +20,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.3",
+    "datahub-proxy-middleware": "^5.0.3",
+    "macaca-datahub": "^4.1.9",
     "vite": "^3.0.7"
   }
 }

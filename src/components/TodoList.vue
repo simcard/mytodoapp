@@ -1,6 +1,10 @@
 <template>
     <div id="todo-list">
-          <div id="new-todo-list-item">
+        <div v-if="error">
+            {{error}}
+        </div>
+        <div v-else>
+           <div id="new-todo-list-item">
             <input type="text" id="new-todo-list-item-input" v-model="newTodoItem"/>
             <input type="submit" id="new-todo-list-item-submit" @click="newItem" value="Add To Do List Item">
         </div>
@@ -11,8 +15,8 @@
                 <div class="delete-item" @click="deleteItem(n.id)">Delete</div>
                 <div class="archive-item" v-if="n.location !== 'archive'" @click="archiveItem(n)">Archive</div>
             </div>
-        </div>
-      
+        </div>        
+     </div>      
     </div>
 </template>
 <script>
@@ -27,12 +31,15 @@ export default {
             newTodoItem: '',
         }
     },
+    mounted(){
+        this.getTodosFromAPI();
+    },
     computed: {
         ...mapStores(useTodos),
-        ...mapState(useTodos, ['todos'])
+        ...mapState(useTodos, ['todos', 'error'])
     },
     methods: {
-        ...mapActions(useTodos, ['addTodo', 'deleteTodo', 'updateTodoStatus', 'archiveTodo'],),
+        ...mapActions(useTodos, ['addTodo', 'deleteTodo', 'updateTodoStatus', 'archiveTodo', 'getTodosFromAPI'],),
         updateTodo(item) {
             this.updateTodoStatus(item)
         },
@@ -46,6 +53,7 @@ export default {
                     location: this.location
                 }
                 this.addTodo(payload);
+                console.log(this.todos);
             }
         },
         archiveItem(item) {
@@ -96,7 +104,7 @@ export default {
     color: black;
 }
 [data-status="false"] label {
-    color: #0428ff;
+    color: #e65300;
     font-weight: 600;
 }
 [data-status="true"] label {

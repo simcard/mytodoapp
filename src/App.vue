@@ -38,10 +38,10 @@ h1 {
     padding: 0.25rem 0.75rem;
 }
 #nav a.router-link-exact-active {
-    color: #0428ff;
+    color: #e65300;
 }
 input[type="submit"] {
-    background: #0028ff;
+    background: #e65300;
     color: white;
     border-radius: 10px;
     padding: 0.5rem 1rem;
