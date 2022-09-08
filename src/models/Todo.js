@@ -6,7 +6,7 @@ export default class Todo {
 
     this.id = object.id || undefined;
     this.value = object.value || undefined;
-    this.location = object.location || "";
+    this.isArchived = object.isArchived || false;
     this.isFinished = object.isFinished || false;
   }
 }

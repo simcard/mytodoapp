@@ -9,11 +9,11 @@
             <input type="submit" id="new-todo-list-item-submit" @click="newItem" value="Add To Do List Item">
         </div>
         <div class="list-item" v-for="n in todos" :key="n.id">
-            <div class="list-item-holder" v-if="n.location == location" :data-status="n.isFinished">
+            <div class="list-item-holder" v-if="n.isArchived == isArchived" :data-status="n.isFinished">
                 <input type="checkbox"  :id="n.id" @click="updateTodo(n)" :checked="n.isFinished"> 
                 <label>{{n.value}}</label>
                 <div class="delete-item" @click="deleteItem(n.id)">Delete</div>
-                <div class="archive-item" v-if="n.location !== 'archive'" @click="archiveItem(n)">Archive</div>
+                <div class="archive-item" v-if="!n.isArchived" @click="archiveItem(n)">Archive</div>
             </div>
         </div>        
      </div>      
@@ -23,9 +23,9 @@
 
 export default {
     props: {
-        location: {
-            type: String,
-            default:''
+        isArchived: {
+            type: Boolean,
+            default:false
         },
         todos: {
             type: Array,
@@ -52,7 +52,6 @@ export default {
             if (this.newTodoItem !== '') {
                 const payload = {
                     value: this.newTodoItem,
-                    location: this.location
                 }
                 this.$emit('add', payload);
             }
