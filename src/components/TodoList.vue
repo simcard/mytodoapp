@@ -20,31 +20,33 @@
     </div>
 </template>
 <script>
-import { useTodos } from "../store/useTodos";
-import { mapActions, mapState, mapStores } from 'pinia';
+
 export default {
     props: {
-        location: String
+        location: {
+            type: String,
+            default:''
+        },
+        todos: {
+            type: Array,
+            default: () => [],
+        },
+        error: {
+            type: String,
+           default:'' 
+        }
     },
     data() {
         return {
             newTodoItem: '',
         }
     },
-    mounted(){
-        this.getTodosFromAPI();
-    },
-    computed: {
-        ...mapStores(useTodos),
-        ...mapState(useTodos, ['todos', 'error'])
-    },
     methods: {
-        ...mapActions(useTodos, ['addTodo', 'deleteTodo', 'updateTodoStatus', 'archiveTodo', 'getTodosFromAPI'],),
         updateTodo(item) {
-            this.updateTodoStatus(item)
+            this.$emit('update',item)
         },
         deleteItem(itemID) {
-            this.deleteTodo(itemID)
+            this.$emit('delete', itemID);
         },
         newItem() {
             if (this.newTodoItem !== '') {
@@ -52,11 +54,11 @@ export default {
                     value: this.newTodoItem,
                     location: this.location
                 }
-                this.addTodo(payload);
+                this.$emit('add', payload);
             }
         },
         archiveItem(item) {
-            this.archiveTodo(item);
+            this.$emit('archive', item);
         }
     }
 
