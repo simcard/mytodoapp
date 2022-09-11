@@ -1,4 +1,3 @@
-import { uuid } from "vue-uuid";
 import { defineStore } from "pinia";
 import axios from "axios";
 import Todo from "../models/Todo";
@@ -11,9 +10,7 @@ export const useTodos = defineStore("todos", {
   }),
   actions: {
     addTodo(payload) {
-      const todo = new Todo(payload);
-      todo.id = uuid.v4();
-      this.todos.push(todo);
+      this.todos.push(payload);
     },
     deleteTodo(itemID) {
       this.todos = this.todos.filter((object) => {
