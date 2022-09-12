@@ -31,15 +31,16 @@ export const useTodos = defineStore("todos", {
     async getTodosFromAPI() {
       try {
         const response = await axios.get(
-          "http://192.168.1.102:9200/data/todos/todo"
+          "http://10.103.103.207:9200/data/todo/todos"
         );
+
         if (response.data.status) {
           this.todos = response.data.data.map((item) => new Todo(item));
         } else {
           throw response.data.errorMessage;
         }
       } catch (error) {
-        this.error = response.errorMessage;
+        this.error = error;
         return Promise.resolve();
       }
     },

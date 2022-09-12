@@ -1,7 +1,7 @@
 <template>
   <div id="todo-list">
     <div v-if="error">
-      {{ error }}
+      <p class="error">{{ error }}</p>
     </div>
     <div v-else>
       <div v-if="!isArchived" id="new-todo-list-item">
@@ -74,6 +74,7 @@ export default {
       if (this.todo.value !== "") {
         this.todo.id = uuid.v4();
         this.$emit("add", this.todo);
+        console.log(this.todo);
         this.todo = new Todo();
       }
     },
@@ -132,5 +133,9 @@ export default {
 }
 [data-status="true"] label {
   text-decoration: line-through;
+}
+.error {
+  color: red;
+  padding: 10px;
 }
 </style>
