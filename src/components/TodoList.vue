@@ -74,7 +74,6 @@ export default {
       if (this.todo.value !== "") {
         this.todo.id = uuid.v4();
         this.$emit("add", this.todo);
-        console.log(this.todo);
         this.todo = new Todo();
       }
     },

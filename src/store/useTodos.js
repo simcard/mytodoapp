@@ -5,7 +5,6 @@ import Todo from "../models/Todo";
 export const useTodos = defineStore("todos", {
   state: () => ({
     todos: [],
-    nextId: 0,
     error: "",
   }),
   actions: {
