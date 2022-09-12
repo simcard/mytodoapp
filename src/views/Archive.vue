@@ -4,8 +4,8 @@
     :todos="todos"
     :error="error"
     isArchived
-    @delete="deleteItem"
-    @update="updateTodo"
+    @delete="deleteTodoItem"
+    @update="updateTodoItem"
   />
 </template>
 <script>

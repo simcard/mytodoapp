@@ -17,7 +17,7 @@ export const useTodos = defineStore("todos", {
         return object.id !== itemID;
       });
     },
-    updateTodoStatus(itemToUpdate) {
+    updateTodoItemStatus(itemToUpdate) {
       let newStatus = !itemToUpdate.isFinished;
       this.todos = this.todos.map((item) =>
         item.id === itemToUpdate.id ? { ...item, isFinished: newStatus } : item

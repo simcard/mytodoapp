@@ -9,7 +9,7 @@
         <input
           type="submit"
           id="new-todo-list-item-submit"
-          @click="newItem"
+          @click="addNewITodotem"
           value="Add To Do List Item"
         />
       </div>
@@ -22,15 +22,15 @@
           <input
             type="checkbox"
             :id="n.id"
-            @click="updateTodo(n)"
+            @click="updateTodoItem(n)"
             :checked="n.isFinished"
           />
           <label>{{ n.value }}</label>
-          <div class="delete-item" @click="deleteItem(n.id)">Delete</div>
+          <div class="delete-item" @click="deleteTodoItem(n.id)">Delete</div>
           <div
             class="archive-item"
             v-if="!n.isArchived"
-            @click="archiveItem(n)"
+            @click="archiveTodoItem(n)"
           >
             Archive
           </div>
@@ -64,13 +64,13 @@ export default {
     };
   },
   methods: {
-    updateTodo(item) {
+    updateTodoItem(item) {
       this.$emit("update", item);
     },
-    deleteItem(itemID) {
+    deleteTodoItem(itemID) {
       this.$emit("delete", itemID);
     },
-    newItem() {
+    addNewITodotem() {
       if (this.todo.value !== "") {
         this.todo.id = uuid.v4();
         this.$emit("add", this.todo);
@@ -78,7 +78,7 @@ export default {
         this.todo = new Todo();
       }
     },
-    archiveItem(item) {
+    archiveTodoItem(item) {
       this.$emit("archive", item);
     },
   },

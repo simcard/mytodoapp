@@ -10,14 +10,14 @@ export default {
   methods: {
     ...mapActions(useTodos, [
       "deleteTodo",
-      "updateTodoStatus",
+      "updateTodoItemStatus",
       "getTodosFromAPI",
     ]),
-    deleteItem(itemID) {
+    deleteTodoItem(itemID) {
       this.todos = this.deleteTodo(itemID);
     },
-    updateTodo(item) {
-      this.todos = this.updateTodoStatus(item);
+    updateTodoItem(item) {
+      this.todos = this.updateTodoItemStatus(item);
     },
   },
 };
